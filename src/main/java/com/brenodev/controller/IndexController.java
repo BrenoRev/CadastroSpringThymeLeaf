@@ -23,7 +23,7 @@ public class IndexController {
 	@Autowired	
 	PessoaService pessoaService;
 	
-	@RequestMapping(method=RequestMethod.GET , value="/cadastropessoa")
+	@RequestMapping(method=RequestMethod.GET , value="**/cadastropessoa")
 	public ModelAndView inicio() {
 		// MOSTRAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
@@ -34,7 +34,7 @@ public class IndexController {
 		return mv;
 	}
 	
-	@PostMapping("/salvarpessoa")
+	@PostMapping("**/salvarpessoa")
 	public ModelAndView salvar(Pessoa pessoa) {
 		pessoaService.salvarPessoa(pessoa);
 		// ATUALIZAR A LISTA
@@ -48,11 +48,13 @@ public class IndexController {
 	}
 
 	
-	@GetMapping("editarpessoa/{idpessoa}")
+	@GetMapping("**/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa) {
 		Optional<Pessoa> pessoa = pessoaService.buscarPorID(idpessoa);
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		mv.addObject("pessoaobj", pessoa.get());
+		List<Pessoa> lista = pessoaService.listarPessoas();
+		mv.addObject("pessoas", lista);
 		return mv;
 	}
 	
