@@ -1,63 +1,98 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="head :: cabeca">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Cadastro</title>
+
+<link rel="stylesheet" href="/css/stylecadastro.css">
 </head>
+
 <body>
-	<form name="form" action="salvarpessoa" method="post" th:object="${pessoaobj}">
-		<label>ID</label>
-		<input id="id" th:field="*{id}" readonly="readonly">
-		<label>Nome</label> 
-		<input id="nome" th:field="*{nome}"  placeholder="Nome"> 
-		<label>Sobrenome</label>
-		<input id="sobrenome" th:field="*{sobrenome}" placeholder="Sobrenome">
-		<label>Idade</label>
-		<input id="idade" type="number" name="idade" th:field="*{idade}" placeholder="Idade">
-		<button class="btn waves-effect waves-light" type="submit"> Submit 
-		</button>
-		<button class="btn waves-effect waves-light" type="button" onclick="limpar()"> Limpar</button>
-	</form>
-		
+	<div id="quadradoprincipal">
+		<h2>Cadastro de Funcionário</h2>
+
+		<div class="row">
+			<form id="formpessoa" name="form" action="salvarpessoa" method="post"
+				th:object="${pessoaobj}" class="col s12">
+
+				<div class="row">
+					<div class="input-fiel col s6">
+						<label for="id">ID</label> <input id="id" th:field="*{id}"
+							readonly="readonly">
+					</div>
+
+					<div class="input-fiel col s6">
+						<label for="nome">Nome</label> <input id="nome" th:field="*{nome}"
+							class="validate">
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="input-fiel col s6">
+						<label for="sobrenome">Sobrenome</label> <input id="sobrenome"
+							th:field="*{sobrenome}" class="validate">
+					</div>
+					<div class="input-fiel col s6">
+						<label for="idade">Idade</label> <input id="idade" type="number"
+							name="idade" th:field="*{idade}" class="validate">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input field col s12">
+						<button class="btn waves-effect waves-light" type="submit">Enviar</button>
+						<button class="btn waves-effect waves-light" type="button"
+							onclick="document.getElementById('formpessoa').reset()">
+							Limpar</button>
+					</div>
+				</div>
+			</form>
+		</div>
 		<form action="pesquisarpessoa" method="post">
-			<label>Pesquisa por nome:</label>
-			<input name="nomepesquisa">
-			<button class="btn waves-effect waves-light" type="submit"> Buscar </button>
+			<label>Pesquisa por nome:</label> <input name="nomepesquisa">
+			<button class="btn waves-effect waves-light" type="submit">
+				Buscar</button>
 		</form>
-		
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>Sobrenome</th>
-				<th>Idade</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="pessoa : ${pessoas}">
 
-				<td th:text="${pessoa.id}"></td>
-				<td th:text="${pessoa.nome}"></td>
-				<td th:text="${pessoa.sobrenome}"></td>
-				<td th:text="${pessoa.idade}"></td>
-				<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
-				<td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a></td>
-			<tr>
-		</tbody>
-	</table>
+		<br>
+		<div id="pesquisa">
+			<table>
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Sobrenome</th>
+						<th>Idade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pessoa : ${pessoas}">
 
-
-	
-	<script type="text/javascript">
-	function limpar(){
-		document.getElementById('id').value='';
-		document.getElementById('nome').value='';
-		document.getElementById('sobrenome').value='';
-		document.getElementById('idade').value='';
-	}
-	</script>
-	
+						
+						<td th:text="${pessoa.nome}" ></td>
+						<td th:text="${pessoa.sobrenome}"></td>
+						<td th:text="${pessoa.idade}"></td>
+						<td><a 
+							th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"
+							>Editar</a></td>
+						<td><a 
+							th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}"
+							>Excluir</a></td>
+					<tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 	<script th:replace="scriptjs :: script"></script>
 </body>
 </html>
