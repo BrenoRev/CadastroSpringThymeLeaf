@@ -12,10 +12,14 @@
 </head>
 <body>
 	<form action="salvarpessoa" method="post">
-		<label>Nome</label> <input name="nome"> <label>Sobrenome</label>
-		<input name="sobrenome"> <label>Idade</label> <input
-			type="number" name="idade"> <input type="submit">
+		<label>Nome</label> <input name="nome"> 
+		<label>Sobrenome</label>
+		<input name="sobrenome"> 
+		<label>Idade</label> <input
+		type="number" name="idade"> <input type="submit">
 	</form>
+
+	<a href="/listapessoas">Lista de Pessoas</a>
 
 	<table class="table">
 		<thead>
@@ -28,6 +32,7 @@
 		</thead>
 		<tbody>
 			<tr th:each = "pessoa : ${pessoas}">
+			
 			<td th:text = "${pessoa.id}"></td>
 			<td th:text = "${pessoa.nome}"></td>
 			<td th:text = "${pessoa.sobrenome}"></td>

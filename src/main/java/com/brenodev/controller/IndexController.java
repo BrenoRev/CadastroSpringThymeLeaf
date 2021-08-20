@@ -22,21 +22,20 @@ public class IndexController {
 	PessoaService pessoaService;
 	
 	@RequestMapping(method=RequestMethod.GET , value="/cadastropessoa")
-	public String inicio() {
-		return "cadastro/cadastropessoa";
+	public ModelAndView inicio() {
+		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
+		List<Pessoa> lista = pessoaService.listarPessoas();
+		mv.addObject("pessoas", lista);
+		return mv;
 	}
 	
 	@PostMapping("/salvarpessoa")
-	public String salvar(Pessoa pessoa) {
+	public ModelAndView salvar(Pessoa pessoa) {
 		pessoaService.salvarPessoa(pessoa);
-		return "cadastro/cadastropessoa";
+		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
+		List<Pessoa> lista = pessoaService.listarPessoas();
+		mv.addObject("pessoas", lista);
+		return mv;
 	}
 	
-	@GetMapping("/listapessoas")
-	public ModelAndView pessoas() {
-	ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
-	List<Pessoa> lista = pessoaService.listarPessoas();
-	mv.addObject("pessoas", lista);
-	return mv;
-	}
 }
