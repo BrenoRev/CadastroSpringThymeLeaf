@@ -29,4 +29,12 @@ public class PessoaService{
 	public Optional<Pessoa> buscarPorID(Long id) {
 		return pessoaRepository.findById(id);
 	}
+	
+	public void removerPorId(Long id) {
+		pessoaRepository.deleteById(id);
+	}
+	
+	public List<Pessoa> buscarTodos(){
+		return pessoaRepository.findAll();
+	}
 }

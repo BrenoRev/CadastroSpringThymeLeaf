@@ -58,5 +58,14 @@ public class IndexController {
 		return mv;
 	}
 	
+	@GetMapping("**/removerpessoa/{idpessoa}")
+	public ModelAndView remover(@PathVariable("idpessoa") Long idpessoa) {
+		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
+		pessoaService.removerPorId(idpessoa);
+		mv.addObject("pessoaobj", new Pessoa());
+		mv.addObject("pessoas", pessoaService.buscarTodos());
+		return mv;
+	}
+	
 }
 
