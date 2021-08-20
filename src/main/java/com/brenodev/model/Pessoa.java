@@ -6,6 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.sun.istack.NotNull;
 
 import lombok.Data;
 
@@ -18,9 +25,18 @@ public class Pessoa implements Serializable{
 	@Id
 	private Long id;
 	
+	@NotNull
+	@NotBlank
+	@Length(min=3, max= 15)
 	private String nome;
 	
+	@NotNull
+	@NotBlank
+	@Length(min=3, max= 15)
 	private String sobrenome;
 	
+	@NotNull
+	@Min(1)
+	@Max(100)
 	private int idade;
 }

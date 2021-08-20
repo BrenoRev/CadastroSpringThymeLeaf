@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>INDEX</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: cabeca"> 
+<title>Index</title>
 </head>
 <body>
 	<h1>Olá spring boot</h1>
 	<a href="/cadastropessoa">Cadastro Pessoa</a>
+	
+	<script th:replace="scriptjs :: script"></script>
 </body>
 </html>
