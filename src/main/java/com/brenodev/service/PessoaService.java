@@ -1,6 +1,7 @@
 package com.brenodev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -15,13 +16,17 @@ import com.brenodev.repository.PessoaRepository;
 public class PessoaService{
 	
 	@Autowired
-	PessoaRepository Pessoarepository;
+	PessoaRepository pessoaRepository;
 	
 	public void salvarPessoa(Pessoa pessoa) {
-		Pessoarepository.save(pessoa);
+		pessoaRepository.save(pessoa);
 	}
 	
 	public List<Pessoa> listarPessoas() {
-		return Pessoarepository.findAll();
+		return pessoaRepository.findAll();
+	}
+	
+	public Optional<Pessoa> buscarPorID(Long id) {
+		return pessoaRepository.findById(id);
 	}
 }

@@ -5,18 +5,21 @@
 <title>Cadastro</title>
 </head>
 <body>
-	<form action="salvarpessoa" method="post">
+	<form name="form" action="salvarpessoa" method="post" th:object="${pessoaobj}">
+		<label>ID</label>
+		<input id="id" th:field="*{id}" readonly="readonly">
 		<label>Nome</label> 
-		<input name="nome"> 
+		<input id="nome" th:field="*{nome}"  placeholder="Nome"> 
 		<label>Sobrenome</label>
-		<input name="sobrenome">
+		<input id="sobrenome" th:field="*{sobrenome}" placeholder="Sobrenome">
 		<label>Idade</label>
-		 <input type="number" name="idade">
+		<input id="idade" type="number" name="idade" th:field="*{idade}" placeholder="Idade">
 		<button class="btn waves-effect waves-light" type="submit"> Submit 
 		</button>
+		<button class="btn waves-effect waves-light" type="button" onclick="limpar()"> Limpar</button>
 	</form>
-
-	<table class="table">
+		
+	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -32,11 +35,22 @@
 				<td th:text="${pessoa.nome}"></td>
 				<td th:text="${pessoa.sobrenome}"></td>
 				<td th:text="${pessoa.idade}"></td>
+				<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
 			<tr>
 		</tbody>
 	</table>
 
-	<script th:replace="scriptjs :: script"></script>
 
+	
+	<script type="text/javascript">
+	function limpar(){
+		document.getElementById('id').value='';
+		document.getElementById('nome').value='';
+		document.getElementById('sobrenome').value='';
+		document.getElementById('idade').value='';
+	}
+	</script>
+	
+	<script th:replace="scriptjs :: script"></script>
 </body>
 </html>

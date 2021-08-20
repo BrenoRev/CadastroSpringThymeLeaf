@@ -38,5 +38,5 @@ public class Pessoa implements Serializable{
 	@NotNull
 	@Min(1)
 	@Max(100)
-	private int idade;
+	private Integer idade = null;
 }
