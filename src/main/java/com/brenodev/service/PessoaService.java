@@ -37,4 +37,9 @@ public class PessoaService{
 	public List<Pessoa> buscarTodos(){
 		return pessoaRepository.findAll();
 	}
+	
+	public List<Pessoa> findPessoaByName(String nome){
+		return pessoaRepository.pesquisarNome(nome);
+	}
+	
 }
