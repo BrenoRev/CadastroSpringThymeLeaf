@@ -12,15 +12,28 @@
 	rel="stylesheet"
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
 	crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/styletelefone.css">
 	    <link rel="shortcut icon" href="/favicon/pessoas.png" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Principal</title>
+<title>Telefones</title>
+
 </head>
 
 <body>
-	<h1>Olá spring boot</h1>
-	<a href="/cadastropessoa">Cadastro Pessoa</a>
+<div id="quadradoprincipal">
+		<h2 id="h2">Telefone dos Funcionários</h2>
+	<div th:each="p : ${pessoaobj}">
 	
+		<div class="row">
+			<p>ID: <span th:text="${p.id}"></span></p>
+			<p>Nome: <span th:text="${p.nome}"></span></p>
+			<p>Sobrenome: <span th:text="${p.sobrenome}"></span></p>
+			<p>Idade: <span th:text="${p.idade}"></span></p>
+		</div>
+		
+		<a href="/cadastropessoa" class="btn waves-effect waves-light">Voltar</a>
+	</div>
+	</div>
 	<script th:replace="scriptjs :: script"></script>
 </body>
 </html>

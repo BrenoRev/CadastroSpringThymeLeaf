@@ -1,10 +1,8 @@
-tbody> tr:nth-child(odd){
-	background-color:rgba(158, 154, 154, 0.5);
+#h2{
+	text-align:center;
 }
-
 body {
 	max-width: 500px;
-	text-align: center;
 	margin: auto;
 	background-size: cover;
 	background-image: linear-gradient(to right, purple, blue);
@@ -15,18 +13,4 @@ body {
 	padding: 15px;
 	width: 100%;
 	border-radius: 10px;
-}
-
-#pesquisa{
-height: 300px; 
-overflow: auto;
-
-}
-
-tbody td {
-text-align: center;
-}
-
-a {
-	text-decoration: none;
 }

@@ -76,5 +76,12 @@ public class IndexController {
 		return mv;
 	}
 	
+	@GetMapping("**/telefones/{idpessoa}")
+	public ModelAndView telefones(@PathVariable("idpessoa") Long idpessoa) {
+		Optional<Pessoa> pessoa = pessoaService.buscarPorID(idpessoa);
+		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		mv.addObject("pessoaobj", pessoa.get());
+		return mv;
+	}
 }
 
