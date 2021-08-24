@@ -8,6 +8,7 @@ body {
 	margin: auto;
 	background-size: cover;
 	background-image: linear-gradient(to right, purple, blue);
+	overflow-y: hidden;
 	
 }
 #quadradoprincipal {
@@ -16,6 +17,8 @@ body {
 	width: 100%;
 	border-radius: 10px;
 }
+
+
 
 #pesquisa{
 height: 300px; 
@@ -29,4 +32,23 @@ text-align: center;
 
 a {
 	text-decoration: none;
+}
+
+@media screen and (min-width: 525px) {
+	body{
+	max-width: 500px
+	}
+}
+
+@media screen and (min-width: 800px) {
+	body{
+	width: 800px;
+	height: 800px;
+	}
+}
+
+@media screen and (min-width: 1800px) {
+	body{
+	max-width: 1200px;
+	}
 }
