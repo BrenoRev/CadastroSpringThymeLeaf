@@ -111,24 +111,9 @@ public class IndexController {
 	}
 	
 	@PostMapping("**/addfonePessoa/{pessoaid}")
-	public ModelAndView addFonePessoa(@Valid Telefone telefone, BindingResult bindingResult, @PathVariable("pessoaid") Long pessoaid) {
-		
-		if(bindingResult.hasErrors()) {
-			ModelAndView model = new ModelAndView("cadastro/telefones");
-			Pessoa pessoa = pessoaService.buscarPorID(pessoaid).get();
-			model.addObject("pessoaobj", pessoa);
-			model.addObject("telefones", telefoneService.getFones(pessoaid));
-			
-			List<String> msg = new ArrayList<String>();
-			// VAI ADICIONAR TODOS OS ERROS NA LISTA
-			for(ObjectError objectError : bindingResult.getAllErrors()) {
-				msg.add(objectError.getDefaultMessage());
-			}
-						model.addObject("msg", msg);
-			return model;
-		}
-		
+	public ModelAndView addFonePessoa(@Valid Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
 		Pessoa pessoa = pessoaService.buscarPorID(pessoaid).get();
+		
 		ModelAndView modelAndView = new ModelAndView("cadastro/telefones");
 		telefone.setPessoa(pessoa);
 		telefoneService.save(telefone);

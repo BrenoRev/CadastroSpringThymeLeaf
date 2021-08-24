@@ -7,8 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 
@@ -21,12 +21,10 @@ public class Telefone implements Serializable{
 	@Id
 	private Long id;
 	
-	@NotEmpty(message="Número não pode ser vazio")
-	@NotNull(message="Número não pode ser nulo")
+	@Length(min = 8)
 	private String numero;
 	
-	@NotEmpty(message="Número não pode ser vazio")
-	@NotNull(message="Tipo não pode ser nulo")
+	@Length(min = 4)
 	private String tipo;
 	
 	@ManyToOne
