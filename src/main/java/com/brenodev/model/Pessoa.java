@@ -11,11 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-
-import com.sun.istack.NotNull;
 
 import lombok.Data;
 
@@ -28,20 +27,20 @@ public class Pessoa implements Serializable{
 	@Id
 	private Long id;
 	
-	@NotNull
-	@NotBlank
-	@Length(min=3, max= 15)
+	@NotEmpty(message="Nome não pode ser nulo")
+	@NotNull(message="Nome não pode ser vázio")
+	@Length(min=3, max= 15, message = "Nome deve ter entre 3 a 15 caracteres")
 	private String nome;
 	
-	@NotNull
-	@NotBlank
-	@Length(min=3, max= 15)
+	@NotEmpty(message="Sobrenome não pode ser nulo")
+	@NotNull(message="Sobrneome não pode ser vázio")
+	@Length(min=3, max= 15, message = "Sobrenome deve ter entre 3 a 15 caracteres")
 	private String sobrenome;
 	
-	@NotNull
-	@Min(1)
-	@Max(100)
-	private Integer idade = null;
+	@NotNull(message = "Idade inválida")
+	@Min(value= 1, message = "Idade inválida")
+	@Max(value = 100, message = "Idade Invalida")
+	private Integer idade;
 	
 	@OneToMany(mappedBy="pessoa", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Telefone> telefone;

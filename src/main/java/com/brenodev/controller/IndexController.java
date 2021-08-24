@@ -1,10 +1,15 @@
 package com.brenodev.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,13 +46,28 @@ public class IndexController {
 	}
 	
 	@PostMapping("**/salvarpessoa")
-	public ModelAndView salvar(Pessoa pessoa) {
+	public ModelAndView salvar(@Valid Pessoa pessoa, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()) {
+			ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
+			List<Pessoa> lista = pessoaService.listarPessoas();
+			model.addObject("pessoaobj", pessoa);
+			model.addObject("pessoas", lista);
+			List<String> msg = new ArrayList<String>();
+			
+			// VAI ADICIONAR TODOS OS ERROS NA LISTA
+			for(ObjectError objectError : bindingResult.getAllErrors()) {
+				msg.add(objectError.getDefaultMessage()); // VEM DAS ANOTAÇÕES
+			}
+			model.addObject("msg", msg);
+			
+			return model;
+		}
 		pessoaService.salvarPessoa(pessoa);
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		List<Pessoa> lista = pessoaService.listarPessoas();
 		Optional<Pessoa> humano = Optional.ofNullable(new Pessoa());
-		//Optional<Pessoa> humano = pessoaService.buscarPorID(pessoa.getId());
 		mv.addObject("pessoaobj", humano.get());
 		mv.addObject("pessoas", lista);
 		return mv;
