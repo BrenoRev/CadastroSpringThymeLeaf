@@ -26,6 +26,12 @@
 	<div th:each="p : ${pessoaobj}">
 	
 		<div class="row">
+		
+		<br>
+		<div th:each="m : ${msg}">
+			<p style="text-align: left; color:red" th:text="${m}"> </p>
+		</div>
+		
 			<p>ID: <span th:text="${p.id}"></span></p>
 			<p>Nome: <span th:text="${p.nome}"></span></p>
 			<p>Sobrenome: <span th:text="${p.sobrenome}"></span></p>
@@ -43,7 +49,7 @@
 		<div class="row">
 			<div class="input-field col s6">
 				<label class="active" for="numero">Número: </label>
-				<input id="numero" name="numero" class="validate">
+				<input type="number" id="numero" name="numero" class="validate">
 			</div>
 			<div class="input-field col s6">
 				<label class="active" for="tipo">Tipo: </label>
