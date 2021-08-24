@@ -86,19 +86,32 @@ public class IndexController {
 		Optional<Pessoa> pessoa = pessoaService.buscarPorID(idpessoa);
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
 		mv.addObject("pessoaobj", pessoa.get());
+		mv.addObject("telefones", telefoneService.getFones(idpessoa));
 		return mv;
 	}
 	
-	@PostMapping("**/addfonePessoa/{pessoaid}")
+	@PostMapping("**/addfonePessoa")
 	public ModelAndView addFonePessoa(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
 		Pessoa pessoa = pessoaService.buscarPorID(pessoaid).get();
 		telefone.setPessoa(pessoa);
 		telefoneService.save(telefone);
 		
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		mv.addObject("telefones", telefoneService.getFones(pessoaid));
 		mv.addObject("pessoaobj", pessoa);
 		return mv;
 		
+	}
+	
+	@GetMapping("**/removertelefone/{idtelefone}")
+	public ModelAndView removerTelefone(@PathVariable("idtelefone") Long idtelefone) {
+		Pessoa pessoa = telefoneService.getAFone(idtelefone).get().getPessoa();
+		telefoneService.removerPorId(idtelefone);
+		
+		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		mv.addObject("pessoaobj", pessoa);
+		mv.addObject("telefones", telefoneService.getFones(pessoa.getId()));
+		return mv;
 	}
 }
 

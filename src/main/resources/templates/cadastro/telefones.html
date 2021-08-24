@@ -52,6 +52,23 @@
 		</div>
 		</form>
 	</div>
+<div id="pesquisa">
+	<table class="striped">
+	<thead>
+		<tr>
+			<td>Telefone</td>
+			<td>Tipo</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="fone : ${telefones}">
+			<td th:text="${fone.numero}"></td>
+			<td th:text="${fone.tipo}"></td>
+			<td><a th:href="@{/removertelefone/{idtelefone}(idtelefone=${fone.id})}">Excluir</a></td>
+		</tr>
+	</tbody>
+	</table>
+</div>
 	</div>
 	<script th:replace="scriptjs :: script"></script>
 </body>
