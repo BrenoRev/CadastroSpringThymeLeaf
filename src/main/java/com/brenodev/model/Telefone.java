@@ -2,6 +2,7 @@ package com.brenodev.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,9 @@ public class Telefone implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	
 	private String numero;
-	
 	private String tipo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
 	private Pessoa pessoa;
 }

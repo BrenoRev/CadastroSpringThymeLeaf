@@ -11,7 +11,7 @@ import com.brenodev.model.Pessoa;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 
-	@Query(value = "SELECT p FROM Pessoa p WHERE p.nome LIKE %?1%")
+	@Query(value = "SELECT p FROM Pessoa p WHERE UPPER(p.nome) LIKE %?1%")
 	public List<Pessoa> pesquisarNome(String nome);
 	
 }

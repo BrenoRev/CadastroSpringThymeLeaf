@@ -110,17 +110,15 @@ public class IndexController {
 		return mv;
 	}
 	
-	@PostMapping("**/addfonePessoa")
+	@PostMapping("**/addfonePessoa/{pessoaid}")
 	public ModelAndView addFonePessoa(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
 		Pessoa pessoa = pessoaService.buscarPorID(pessoaid).get();
+		ModelAndView modelAndView = new ModelAndView("cadastro/telefones");
 		telefone.setPessoa(pessoa);
 		telefoneService.save(telefone);
-		
-		ModelAndView mv = new ModelAndView("cadastro/telefones");
-		mv.addObject("telefones", telefoneService.getFones(pessoaid));
-		mv.addObject("pessoaobj", pessoa);
-		return mv;
-		
+		modelAndView.addObject("pessoaobj", pessoa);
+		modelAndView.addObject("telefones", telefoneService.getFones(pessoaid));
+		return modelAndView;
 	}
 	
 	@GetMapping("**/removertelefone/{idtelefone}")

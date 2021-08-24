@@ -39,7 +39,7 @@ public class PessoaService{
 	}
 	
 	public List<Pessoa> findPessoaByName(String nome){
-		return pessoaRepository.pesquisarNome(nome);
+		return pessoaRepository.pesquisarNome(nome.toUpperCase());
 	}
 	
 }
