@@ -21,7 +21,7 @@
 
 <body>
 <div id="quadradoprincipal">
-		<h2 id="h2">Telefone dos Funcionários</h2>
+		<h2 id="h2">Informações do Usuário</h2>
 	<div th:each="p : ${pessoaobj}">
 	
 		<div class="row">
@@ -32,6 +32,25 @@
 		</div>
 		
 		<a href="/cadastropessoa" class="btn waves-effect waves-light">Voltar</a>
+	</div>
+	
+	<br>
+	<h5> Telefones </h5>
+	<br>
+	<div class="row">
+		<form th:action="@{/addfonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" method="post" class="col s12">
+		<div class="row">
+			<div class="input-field col s6">
+				<label class="active" for="numero">Número: </label>
+				<input id="numero" name="numero" class="validate">
+			</div>
+			<div class="input-field col s6">
+				<label class="active" for="tipo">Tipo: </label>
+				<input id="tipo" name="tipo" class="validate">
+			</div>
+			<input class="btn waves-effect waves-light" type="submit" value="Adicionar">
+		</div>
+		</form>
 	</div>
 	</div>
 	<script th:replace="scriptjs :: script"></script>

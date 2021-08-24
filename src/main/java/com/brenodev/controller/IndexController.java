@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.brenodev.model.Pessoa;
+import com.brenodev.model.Telefone;
 import com.brenodev.service.PessoaService;
+import com.brenodev.service.TelefoneService;
 
 
 
@@ -23,6 +25,9 @@ public class IndexController {
 
 	@Autowired	
 	PessoaService pessoaService;
+	
+	@Autowired
+	TelefoneService telefoneService;
 	
 	@RequestMapping(method=RequestMethod.GET , value="**/cadastropessoa")
 	public ModelAndView inicio() {
@@ -82,6 +87,18 @@ public class IndexController {
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
 		mv.addObject("pessoaobj", pessoa.get());
 		return mv;
+	}
+	
+	@PostMapping("**/addfonePessoa/{pessoaid}")
+	public ModelAndView addFonePessoa(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
+		Pessoa pessoa = pessoaService.buscarPorID(pessoaid).get();
+		telefone.setPessoa(pessoa);
+		telefoneService.save(telefone);
+		
+		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		mv.addObject("pessoaobj", pessoa);
+		return mv;
+		
 	}
 }
 
