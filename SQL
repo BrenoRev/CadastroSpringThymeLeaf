@@ -1,0 +1,5 @@
+** Resolvendo o problema de só poder ter 1 usuário pra cada role,
+precisa dropar a uniquekey e criar uma nova com role_id e usuario_id como parametro
+
+ALTER TABLE public.usuarios_role
+    ADD CONSTRAINT uk_krvk2qx218dxa3ogdyplk0wxw UNIQUE (role_id, usuario_id);
