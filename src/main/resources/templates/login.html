@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon/pessoas.png" type="image/x-icon">
+<title>Login</title>
+
+<style>
+tbody> tr:nth-child(odd){
+	background-color:rgba(158, 154, 154, 0.5);
+}
+
+body {
+	max-width: 500px;
+	text-align: center;
+	margin: auto;
+	background-size: cover;
+	background-image: linear-gradient(to right, purple, blue);
+	overflow-y: hidden;
+	
+}
+#quadradoprincipal {
+	background-color: white;
+	padding: 15px;
+	width: 100%;
+	border-radius: 10px;
+}
+
+form input[type=submit] {
+	color: black;
+}
+
+@media screen and (min-width: 525px) {
+	body{
+	max-width: 100%;
+	height: 100%;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	body{
+	width: 80%;
+	height: 100%;
+	}
+}
+
+@media screen and (min-width: 1800px) {
+	body{
+	max-width: 70%;
+	height: 100%;
+	}
+}
+</style>
+</head>
+
+<body>
+	<div id="quadradoprincipal">
+			<h1>Acesso ao sistema</h1>
+			<form th:action="@{/login}" method="post" class="col s12">
+			<div class="row">
+				<div class="input-fiel col s6">
+					<label>Login</label>
+					<input type="text" name="username">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-fiel col s6">
+					<label>Senha</label>
+					<input type="password" name="password">
+				</div>
+			</div>
+			<div class="row">
+					<div class="input field col s12">
+						<input class="btn waves-effect waves-light" name="logar" type="submit" value="Logar">
+					</div>
+				</div>
+			</form>
+		</div>
+
+	<script th:replace="scriptjs :: script"></script>
+</body>
+</html>
