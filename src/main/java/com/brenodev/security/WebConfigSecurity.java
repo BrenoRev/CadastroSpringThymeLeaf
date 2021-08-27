@@ -35,7 +35,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		auth.userDetailsService(implementacaoUserDetailsService)
-		.passwordEncoder(new BCryptPasswordEncoder()); // Validar a senha por texto sem padrão de encriptografia
+		.passwordEncoder(new BCryptPasswordEncoder());  // Criptografia por BCryptEncoder
 	
 	}
 	
