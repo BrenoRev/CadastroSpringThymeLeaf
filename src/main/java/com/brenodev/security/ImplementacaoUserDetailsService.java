@@ -1,6 +1,7 @@
 package com.brenodev.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +22,7 @@ public class ImplementacaoUserDetailsService implements UserDetailsService{
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuario não foi encontrado");
 		}
-		return usuario;
+		return new User(usuario.getLogin(), usuario.getPassword(), usuario.isEnabled(), true, true, true, usuario.getAuthorities());
 	}
 
 }
