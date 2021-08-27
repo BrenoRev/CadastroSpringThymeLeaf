@@ -7,17 +7,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.brenodev.model.Usuario;
-import com.brenodev.repository.UsuarioRepository;
+import com.brenodev.service.UsuarioService;
 
 @Service
 public class ImplementacaoUserDetailsService implements UserDetailsService{
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UsuarioService usuarioService;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = usuarioRepository.findUserByLogin(username);
+		Usuario usuario = usuarioService.findUserByLogin(username);
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuario não foi encontrado");
 		}

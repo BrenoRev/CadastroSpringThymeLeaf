@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import com.brenodev.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Long, Usuario>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
-	@Query(value="SELECT u FROM Usuario u WHERE u.login = ?1")
+	@Query("SELECT u FROM Usuario u WHERE u.login = ?1")
 	Usuario findUserByLogin(String login);
 	
 }
