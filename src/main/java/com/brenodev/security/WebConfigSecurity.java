@@ -1,5 +1,6 @@
 package com.brenodev.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +14,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
+	
+
+	@Autowired
+	private ImplementacaoUserDetailsService implementacaoUserDetailsService;
 	
 	@Override // Configurar as solicitações de acesso por Http
 	protected void configure(HttpSecurity http) throws Exception {
@@ -28,11 +33,10 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Override // Cria autenticação do usuário com o banco de dados ou em memória
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-		.passwordEncoder(new BCryptPasswordEncoder()) // Validar a senha por texto sem padrão de encriptografia
-		.withUser("breno")
-		.password("$2a$10$hWNs5OM.UykpfjqdpvwOs.MXzfEFMhXkuzoH7jU7qwr/yF7ta4j.i")
-		.roles("ADMIN");
+		
+		auth.userDetailsService(implementacaoUserDetailsService)
+		.passwordEncoder(new BCryptPasswordEncoder()); // Validar a senha por texto sem padrão de encriptografia
+	
 	}
 	
 	
