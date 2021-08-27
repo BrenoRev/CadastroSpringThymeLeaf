@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -21,8 +22,8 @@
 
 <body>
 	<div id="quadradoprincipal">
-		<h2>Cadastro de Funcionário</h2>
-
+		<h2 sec:authorize="hasRole('ROLE_ADMIN')">Cadastro de Funcionário</h2>
+		<h2 sec:authorize="!hasRole('ROLE_ADMIN')">Visualização de Funcionários</h2>
 		<div class="row">
 		<br>
 		<div th:each="m : ${msg}">
@@ -30,7 +31,7 @@
 		</div>
 		<br>
 			<form id="formpessoa" name="form" action="salvarpessoa" method="post"
-				th:object="${pessoaobj}" class="col s12">
+				th:object="${pessoaobj}" class="col s12" sec:authorize="hasRole('ROLE_ADMIN')">
 
 				<div class="row">
 					<div class="input-fiel col s6">

@@ -3,3 +3,8 @@ precisa dropar a uniquekey e criar uma nova com role_id e usuario_id como parame
 
 ALTER TABLE public.usuarios_role
     ADD CONSTRAINT uk_krvk2qx218dxa3ogdyplk0wxw UNIQUE (role_id, usuario_id);
+    
+** SELECIONAR O NOME DO USUARIO E SUA ROLE
+
+SELECT usuario.login, nome_role FROM usuarios_role JOIN role ON usuarios_role.role_id = role.id 
+JOIN usuario ON usuarios_role.usuario_id = usuario.id;
