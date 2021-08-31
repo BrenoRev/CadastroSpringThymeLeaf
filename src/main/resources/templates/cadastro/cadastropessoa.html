@@ -117,36 +117,36 @@ overflow: auto;
 				<div class="row">
 					<div class="input-fiel col s6">
 						<label for="cep" class="active">Cep:</label>
-						<input name="cep" class="validate" th:field="*{cep}" id="cep">
+						<input name="cep" class="validate" th:field="*{cep.cep}" id="cep">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="rua" class="active">Rua:</label>
-						<input name="rua" class="validate" th:field="*{rua}" id="rua">
+						<input name="rua" class="validate" th:field="*{cep.rua}" id="rua">
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="input-fiel col s6">
 						<label for="bairro" class="active">Bairro:</label>
-						<input name="bairro" class="validate" th:field="*{bairro}" id="bairro">
+						<input name="bairro" class="validate" th:field="*{cep.bairro}" id="bairro">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="cidade" class="active">Cidade:</label>
-						<input name="cidade" class="validate" th:field="*{cidade}" id="cidade">
+						<input name="cidade" class="validate" th:field="*{cep.cidade}" id="cidade">
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="input-fiel col s6">
 						<label for="uf" class="active">UF:</label>
-						<input name="uf" class="validate" th:field="*{uf}" id="uf">
+						<input name="uf" class="validate" th:field="*{cep.uf}" id="uf">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="ibge" class="active">IBGE:</label>
-						<input name="ibge" class="validate" th:field="*{ibge}" id="ibge">
+						<input name="ibge" class="validate" th:field="*{cep.ibge}" id="ibge">
 					</div>
 				</div>
 				

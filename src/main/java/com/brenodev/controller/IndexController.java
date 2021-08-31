@@ -1,6 +1,7 @@
 package com.brenodev.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.brenodev.model.Cep;
 import com.brenodev.model.Pessoa;
 import com.brenodev.model.Telefone;
+import com.brenodev.repository.CepRepository;
 import com.brenodev.service.PessoaService;
 import com.brenodev.service.TelefoneService;
 
@@ -33,6 +36,9 @@ public class IndexController {
 	
 	@Autowired
 	TelefoneService telefoneService;
+	
+	@Autowired
+	CepRepository cepRepository;
 	
 	@RequestMapping(method=RequestMethod.GET , value="**/cadastropessoa")
 	public ModelAndView inicio() {
@@ -64,6 +70,7 @@ public class IndexController {
 			return model;
 		}
 		pessoaService.salvarPessoa(pessoa);
+		
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		List<Pessoa> lista = pessoaService.listarPessoas();

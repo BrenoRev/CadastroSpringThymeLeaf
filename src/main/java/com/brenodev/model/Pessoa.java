@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -42,18 +43,9 @@ public class Pessoa implements Serializable{
 	@Max(value = 100, message = "Idade Invalida")
 	private Integer idade;
 	
-	@OneToMany(mappedBy="pessoa", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="pessoa", orphanRemoval = false, cascade = CascadeType.ALL)
 	private List<Telefone> telefone;
 	
-	private String cep;
-	
-	private String rua;
-	
-	private String bairro;
-	
-	private String cidade;
-	
-	private String uf;
-	
-	private String ibge;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	private Cep cep;
 }
