@@ -33,7 +33,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		.defaultSuccessUrl("/cadastropessoa") // Se logar com sucesso vai ser redirecionado para a pagina de cadastro
 		.failureUrl("/login?error=true") // Se não conseguir logar vai voltar para a mesma pagina
 		.and().logout() // Mapeia a url de Logout e invalida o usuário autenticado
-		.logoutSuccessUrl("/login") // Se deslogar com sucesso redireciona
+		.logoutSuccessUrl("/") // Se deslogar com sucesso redireciona
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout")); // Encerra a sessão
 	}
 	

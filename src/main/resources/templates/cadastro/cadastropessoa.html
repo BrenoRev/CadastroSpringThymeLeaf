@@ -70,8 +70,8 @@ overflow: auto;
 
 <body>
 	<div id="quadradoprincipal">
-		<h2 sec:authorize="hasRole('ROLE_ADMIN')">Cadastro de Funcionário</h2>
-		<h2 sec:authorize="!hasRole('ROLE_ADMIN')">Visualização de Funcionários</h2>
+		<h2 sec:authorize="hasRole('ROLE_ADMIN')" style="text-align: center">Cadastro de Funcionário</h2>
+		<h2 sec:authorize="!hasRole('ROLE_ADMIN')" style="text-align: center">Visualização de Funcionários</h2>
 		<div class="row">
 		<br>
 		<div th:each="m : ${msg}">
