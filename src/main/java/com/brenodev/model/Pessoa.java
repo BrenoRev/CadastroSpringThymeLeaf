@@ -44,4 +44,16 @@ public class Pessoa implements Serializable{
 	
 	@OneToMany(mappedBy="pessoa", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Telefone> telefone;
+	
+	private String cep;
+	
+	private String rua;
+	
+	private String bairro;
+	
+	private String cidade;
+	
+	private String uf;
+	
+	private String ibge;
 }

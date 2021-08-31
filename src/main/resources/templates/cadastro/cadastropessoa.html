@@ -13,11 +13,18 @@
 	rel="stylesheet"
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
 	crossorigin="anonymous">
+	
+	 <!-- Adicionando JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+	
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon/pessoas.png" type="image/x-icon">
 <title>Cadastro</title>
 
 <style>
+	
 #h2{
 	text-align:center;
 }
@@ -26,8 +33,6 @@ body {
 	margin: auto;
 	background-size: cover;
 	background-image: linear-gradient(to right, purple, blue);
-	overflow-y: hidden;
-	
 }
 
 
@@ -65,6 +70,10 @@ overflow: auto;
 	height: 100%;
 	border-radius: 10px;
 }
+
+#linha{
+}
+
 </style>
 </head>
 
@@ -83,27 +92,64 @@ overflow: auto;
 
 				<div class="row">
 					<div class="input-fiel col s6">
-						<label for="id">ID</label> <input id="id" th:field="*{id}"
-							readonly="readonly">
+						<label for="id">ID</label> 
+						<input id="id" th:field="*{id}" readonly="readonly">
 					</div>
 
 					<div class="input-fiel col s6">
-						<label for="nome">Nome</label> <input id="nome" th:field="*{nome}"
-							class="validate">
+						<label for="nome">Nome</label> 
+						<input id="nome" th:field="*{nome}" class="validate">
 					</div>
-
 				</div>
-
-				<div class="row">
+				
+					<div class="row">
 					<div class="input-fiel col s6">
 						<label for="sobrenome">Sobrenome</label> <input id="sobrenome"
 							th:field="*{sobrenome}" class="validate">
 					</div>
+					
 					<div class="input-fiel col s6">
 						<label for="idade">Idade</label> <input id="idade" type="number"
 							name="idade" th:field="*{idade}" class="validate">
 					</div>
 				</div>
+				
+				<div class="row">
+					<div class="input-fiel col s6">
+						<label for="cep" class="active">Cep:</label>
+						<input name="cep" class="validate" th:field="*{cep}" id="cep">
+					</div>
+					
+					<div class="input-fiel col s6">
+						<label for="rua" class="active">Rua:</label>
+						<input name="rua" class="validate" th:field="*{rua}" id="rua">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="input-fiel col s6">
+						<label for="bairro" class="active">Bairro:</label>
+						<input name="bairro" class="validate" th:field="*{bairro}" id="bairro">
+					</div>
+					
+					<div class="input-fiel col s6">
+						<label for="cidade" class="active">Cidade:</label>
+						<input name="cidade" class="validate" th:field="*{cidade}" id="cidade">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="input-fiel col s6">
+						<label for="uf" class="active">UF:</label>
+						<input name="uf" class="validate" th:field="*{uf}" id="uf">
+					</div>
+					
+					<div class="input-fiel col s6">
+						<label for="ibge" class="active">IBGE:</label>
+						<input name="ibge" class="validate" th:field="*{ibge}" id="ibge">
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="input field col s12">
 						<button class="btn waves-effect waves-light" type="submit">Enviar</button>
@@ -130,7 +176,7 @@ overflow: auto;
 						<th>Idade</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class ="linha">
 					<tr th:each="pessoa : ${pessoas}">
 
 						
@@ -150,5 +196,6 @@ overflow: auto;
 		</div>
 	</div>
 	<script th:replace="scriptjs :: script"></script>
+	<script th:replace="scriptcep :: scriptcep"></script>
 </body>
 </html>

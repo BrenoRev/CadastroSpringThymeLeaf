@@ -30,7 +30,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll() // permite qualquer usuário 
 		.loginPage("/login") // Seta a pagina de login do spring security
-		.defaultSuccessUrl("/cadastropessoa") // Se logar com sucesso vai ser redirecionado para a pagina de cadastro
+		.defaultSuccessUrl("/cadastropessoa", true) // Se logar com sucesso vai ser redirecionado para a pagina de cadastro
 		.failureUrl("/login?error=true") // Se não conseguir logar vai voltar para a mesma pagina
 		.and().logout() // Mapeia a url de Logout e invalida o usuário autenticado
 		.logoutSuccessUrl("/") // Se deslogar com sucesso redireciona
