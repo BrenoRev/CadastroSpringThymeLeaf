@@ -76,7 +76,7 @@ public class IndexController {
 				msg.add(objectError.getDefaultMessage()); // VEM DAS ANOTAÇÕES
 			}
 			model.addObject("msg", msg);
-			
+			model.addObject("profissoes", profissaoRepository.findAll());
 			return model;
 		}
 		pessoaService.salvarPessoa(pessoa);
@@ -97,6 +97,7 @@ public class IndexController {
 		mv.addObject("pessoaobj", pessoa.get());
 		List<Pessoa> lista = pessoaService.listarPessoas();
 		mv.addObject("pessoas", lista);
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		return mv;
 	}
 	
