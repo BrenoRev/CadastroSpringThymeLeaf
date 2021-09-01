@@ -116,6 +116,21 @@ overflow: auto;
 				
 				<div class="row">
 					<div class="input-fiel col s6">
+						<label for="sexo" class="active">Sexo</label> 
+						<select class="browser-default" th:field="*{sexo}">
+							<option value="" selected>--[Selecione]--</option>
+							<option value="MASCULINO" th:text="Masculino"/>
+							<option value="FEMININO" th:text="Feminino"/>
+						</select>
+					</div>
+					
+					<div class="input-fiel col s6">
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<div class="input-fiel col s6">
 						<label for="cep" class="active">Cep:</label>
 						<input name="cep" class="validate" placeholder="Digite o seu CEP" th:field="*{cep.cep}" id="cep">
 					</div>

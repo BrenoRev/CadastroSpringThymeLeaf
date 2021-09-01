@@ -43,9 +43,11 @@ public class Pessoa implements Serializable{
 	@Max(value = 100, message = "Idade Invalida")
 	private Integer idade;
 	
+	private String sexo;
+	
 	@OneToMany(mappedBy="pessoa", orphanRemoval = false, cascade = CascadeType.ALL)
 	private List<Telefone> telefone;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Cep cep;
 }
