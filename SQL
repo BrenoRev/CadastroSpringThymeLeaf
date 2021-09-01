@@ -8,3 +8,7 @@ ALTER TABLE public.usuarios_role
 
 SELECT usuario.login, nome_role FROM usuarios_role JOIN role ON usuarios_role.role_id = role.id 
 JOIN usuario ON usuarios_role.usuario_id = usuario.id;
+
+** SELECIONAR A PESSOA E O ENDEREÇO
+
+SELECT pessoa.nome, cep.bairro FROM pessoa JOIN cep ON pessoa.cep_id = cep.id;

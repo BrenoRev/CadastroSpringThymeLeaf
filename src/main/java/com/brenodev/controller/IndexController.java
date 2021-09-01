@@ -1,7 +1,6 @@
 package com.brenodev.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.brenodev.model.Cep;
 import com.brenodev.model.Pessoa;
 import com.brenodev.model.Telefone;
 import com.brenodev.repository.CepRepository;
@@ -54,6 +52,8 @@ public class IndexController {
 	@PostMapping("**/salvarpessoa")
 	public ModelAndView salvar(@Valid Pessoa pessoa, BindingResult bindingResult) {
 		
+		pessoa.setTelefone(telefoneService.getFones(pessoa.getId()));
+		
 		if(bindingResult.hasErrors()) {
 			ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
 			List<Pessoa> lista = pessoaService.listarPessoas();
@@ -70,7 +70,6 @@ public class IndexController {
 			return model;
 		}
 		pessoaService.salvarPessoa(pessoa);
-		
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		List<Pessoa> lista = pessoaService.listarPessoas();
@@ -113,7 +112,7 @@ public class IndexController {
 		Optional<Pessoa> pessoa = pessoaService.buscarPorID(idpessoa);
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
 		mv.addObject("pessoaobj", pessoa.get());
-		mv.addObject("telefones", telefoneService.getFones(idpessoa));
+		mv.addObject("tel	efones", telefoneService.getFones(idpessoa));
 		return mv;
 	}
 	
