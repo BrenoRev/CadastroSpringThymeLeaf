@@ -175,10 +175,12 @@ overflow: auto;
 				</div>
 			</form>
 		</div>
-		<form action="pesquisarpessoa" method="post">
+		<form action="pesquisarpessoa" id="pesquisarpessoa" method="post">
 			<label>Pesquisa por nome:</label> <input name="nomepesquisa">
 			<button class="btn waves-effect waves-light" type="submit">
 				Buscar</button>
+			<button class="btn waves-effect waves-light" type="submit" onclick="document.getElementById('pesquisarpessoa').method = 'get'">
+			PDF</button>
 		</form>
 
 		<br>

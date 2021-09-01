@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,16 @@ import com.brenodev.service.TelefoneService;
 public class IndexController {
 
 	@Autowired	
-	PessoaService pessoaService;
+	private PessoaService pessoaService;
 	
 	@Autowired
-	TelefoneService telefoneService;
+	private TelefoneService telefoneService;
 	
 	@Autowired
-	CepRepository cepRepository;
+	private CepRepository cepRepository;
+	
+	@Autowired
+	private ReportUtil reportUtil;
 	
 	@RequestMapping(method=RequestMethod.GET , value="**/cadastropessoa")
 	public ModelAndView inicio() {
@@ -138,6 +143,13 @@ public class IndexController {
 		mv.addObject("pessoaobj", pessoa);
 		mv.addObject("telefones", telefoneService.getFones(pessoa.getId()));
 		return mv;
+	}
+	
+	@GetMapping("**/pesquisarpessoa")
+	public void imprimePDF(@RequestParam(name = "nomepesquisa") String nomepesquisa,
+							HttpServletRequest request,
+							HttpServletResponse response) {
+		System.out.println("Invocado");
 	}
 }
 
