@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Cep implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -34,4 +36,11 @@ public class Cep implements Serializable{
 	private String uf;
 	
 	private String ibge;
+
+	@Override
+	public String toString() {
+		return "Cep [bairro=" + bairro + ", cidade=" + cidade + "]";
+	}
+	
+	
 }

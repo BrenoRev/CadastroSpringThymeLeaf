@@ -11,9 +11,12 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Telefone implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -29,4 +32,11 @@ public class Telefone implements Serializable{
 	
 	@ManyToOne
 	private Pessoa pessoa;
+
+	@Override
+	public String toString() {
+		return "Telefone [numero=" + numero + ", tipo=" + tipo + "]";
+	}
+	
+	
 }

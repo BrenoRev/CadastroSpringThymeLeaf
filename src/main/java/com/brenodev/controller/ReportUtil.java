@@ -26,7 +26,7 @@ public class ReportUtil implements Serializable{
 		JRBeanCollectionDataSource jrbcds = new JRBeanCollectionDataSource(listDados);
 		
 		// Carrega o caminho do arquivo jasper compilado
-		String caminhoJasper = servletContext.getRealPath("relatorios") + File.separator + "relatorio" + ".jasper";
+		String caminhoJasper = servletContext.getRealPath("relatorios") + File.separator + relatorio + ".jasper";
 		
 		// Carrega o arquivo Japer passando os dados
 		JasperPrint imprenssoraJasper = JasperFillManager.fillReport(caminhoJasper, new HashMap<>(), jrbcds);
