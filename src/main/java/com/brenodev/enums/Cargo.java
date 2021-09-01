@@ -1,16 +1,13 @@
 package com.brenodev.enums;
 
-import lombok.Getter;
-import lombok.ToString;
-
-@Getter
-@ToString
 public enum Cargo {
 
 	ADMIN("Administrador"),
-	GERENTE("Gerente"),
-	CAIXA("Caixa"),
-	REPOSITOR("Repositor");
+	SENIOR("Sênior"),
+	PLENO("Pleno"),
+	JUNIOR("Junior"),
+	ESTAGIARIO("Estagiario"),
+	TRAINEE("Trainee");
 	
 	private String nome;
 	
@@ -18,4 +15,16 @@ public enum Cargo {
 		this.nome = nome;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name();
+	}
 }
