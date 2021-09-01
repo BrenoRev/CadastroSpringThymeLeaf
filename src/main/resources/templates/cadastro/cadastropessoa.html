@@ -98,55 +98,55 @@ overflow: auto;
 
 					<div class="input-fiel col s6">
 						<label for="nome">Nome</label> 
-						<input id="nome" th:field="*{nome}" class="validate">
+						<input id="nome" th:field="*{nome}" placeholder="Digite seu nome" class="validate">
 					</div>
 				</div>
 				
 					<div class="row">
 					<div class="input-fiel col s6">
 						<label for="sobrenome">Sobrenome</label> <input id="sobrenome"
-							th:field="*{sobrenome}" class="validate">
+							th:field="*{sobrenome}" placeholder="Digite seu sobrenome" class="validate">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="idade">Idade</label> <input id="idade" type="number"
-							name="idade" th:field="*{idade}" class="validate">
+							name="idade" placeholder="Digite sua idade" th:field="*{idade}" class="validate">
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="input-fiel col s6">
 						<label for="cep" class="active">Cep:</label>
-						<input name="cep" class="validate" th:field="*{cep.cep}" id="cep">
+						<input name="cep" class="validate" placeholder="Digite o seu CEP" th:field="*{cep.cep}" id="cep">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="rua" class="active">Rua:</label>
-						<input name="rua" class="validate" th:field="*{cep.rua}" id="rua">
+						<input name="rua" class="validate" placeholder="-" readonly th:field="*{cep.rua}" id="rua">
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="input-fiel col s6">
 						<label for="bairro" class="active">Bairro:</label>
-						<input name="bairro" class="validate" th:field="*{cep.bairro}" id="bairro">
+						<input name="bairro" class="validate" placeholder="-" readonly th:field="*{cep.bairro}" id="bairro">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="cidade" class="active">Cidade:</label>
-						<input name="cidade" class="validate" th:field="*{cep.cidade}" id="cidade">
+						<input name="cidade" class="validate" placeholder="-" readonly th:field="*{cep.cidade}" id="cidade">
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="input-fiel col s6">
 						<label for="uf" class="active">UF:</label>
-						<input name="uf" class="validate" th:field="*{cep.uf}" id="uf">
+						<input name="uf" class="validate" readonly placeholder="-" th:field="*{cep.uf}" id="uf">
 					</div>
 					
 					<div class="input-fiel col s6">
 						<label for="ibge" class="active">IBGE:</label>
-						<input name="ibge" class="validate" th:field="*{cep.ibge}" id="ibge">
+						<input name="ibge" class="validate" readonly placeholder="-" th:field="*{cep.ibge}" id="ibge">
 					</div>
 				</div>
 				
