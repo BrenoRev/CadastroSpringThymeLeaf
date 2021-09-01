@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.brenodev.model.Pessoa;
 import com.brenodev.model.Telefone;
 import com.brenodev.repository.CepRepository;
+import com.brenodev.repository.ProfissaoRepository;
 import com.brenodev.service.PessoaService;
 import com.brenodev.service.TelefoneService;
 
@@ -43,12 +44,16 @@ public class IndexController {
 	@Autowired
 	private ReportUtil reportUtil;
 	
+	@Autowired
+	private ProfissaoRepository profissaoRepository;
+	
 	@RequestMapping(method=RequestMethod.GET , value="**/cadastropessoa")
 	public ModelAndView inicio() {
 		// MOSTRAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		List<Pessoa> lista = pessoaService.listarPessoas();
 		Optional<Pessoa> pessoa = Optional.of(new Pessoa());
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		mv.addObject("pessoaobj", pessoa.get());
 		mv.addObject("pessoas", lista);
 		return mv;

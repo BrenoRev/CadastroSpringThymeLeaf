@@ -12,3 +12,7 @@ JOIN usuario ON usuarios_role.usuario_id = usuario.id;
 ** SELECIONAR A PESSOA E O ENDEREÇO
 
 SELECT pessoa.nome, cep.bairro FROM pessoa JOIN cep ON pessoa.cep_id = cep.id;
+
+** SELECIONAR A PESSOA E A PROFISSAO
+
+SELECT pessoa.nome, profissao.nome FROM pessoa JOIN profissao ON pessoa.profissao_id = profissao.id;
