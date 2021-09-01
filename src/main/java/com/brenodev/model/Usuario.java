@@ -30,6 +30,7 @@ public class Usuario implements UserDetails{
 	
 	private String senha;
 	
+	
 	@OneToMany(fetch = FetchType.EAGER)
 	/* 
  	VAI CRIAR UMA TABELA COM O NOME usuarios_role 

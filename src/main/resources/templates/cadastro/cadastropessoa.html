@@ -135,6 +135,20 @@ overflow: auto;
 				
 				<div class="row">
 					<div class="input-fiel col s6">
+						<label for="cargo" class="active">Cargo</label> 
+							<select class="browser-default" th:field="*{cargo}" id="cargo">
+								<option th:each = "c : ${T(com.brenodev.enums.Cargo).values()}" th:value="${c}" th:text="${c}"/>
+							</select>
+					</div>
+					
+					<div class="input-fiel col s6" >
+					</div>
+					
+				</div>
+				
+				
+				<div class="row">
+					<div class="input-fiel col s6">
 						<label for="cep" class="active">Cep:</label>
 						<input name="cep" class="validate" placeholder="Digite o seu CEP" th:field="*{cep.cep}" id="cep">
 					</div>
