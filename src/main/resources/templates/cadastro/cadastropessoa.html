@@ -233,7 +233,9 @@ overflow: auto;
 						<td th:text="${pessoa.id}"></td>
 						<td><a th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}">
 						<span th:text="${pessoa.nome} +' '+ ${pessoa.sobrenome}"></span></a></td>
-						<td><a th:href="@{/baixarcurriculo/{idpessoa}(idpessoa=${pessoa.id})}">Download</a></td>
+						<td><a th:if="${pessoa.curriculo != null}" th:href="@{/baixarcurriculo/{idpessoa}(idpessoa=${pessoa.id})}">Download</a>
+							<a th:if="${pessoa.curriculo == null}"  style="color:red" disabled>Download</a>
+						</td>
 						<td><a 
 							th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"
 							>Editar</a></td>
