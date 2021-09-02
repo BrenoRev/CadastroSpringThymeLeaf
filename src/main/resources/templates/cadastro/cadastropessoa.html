@@ -31,9 +31,12 @@ font-size: 2em;
 	text-align: center;
 	display: inherit;
 }
-#meio > a{
-text-decoration: none;
+#meio > a {
 border: 1px dashed grey;
+}
+
+a{
+text-decoration: none;
 }
 #meio > a:hover{
 border: 1px dashed red;
@@ -290,6 +293,13 @@ overflow: hidden;
 				</tbody>
 			</table>
 			<div class="row" style="margin-top: 30px" id="meio">
+			<span th:if="${pessoas.hasPrevious()}">
+				<a th:href="@{/pessoaspag(page=${pessoas.number-1}, size=${pessoas.size})}">&larr;</a>
+			</span>
+			<span th:if="${pessoas.hasNext()}">
+				<a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size})}">&rarr;</a>
+			</span>
+				
 					<th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages - 1 )}">
 						 <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size})}">[[ ${i} +1 ]]</a>
 					</th:block>
