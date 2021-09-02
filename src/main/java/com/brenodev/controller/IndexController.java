@@ -67,8 +67,9 @@ public class IndexController {
 	
 	@GetMapping("/pessoaspag")
 	public ModelAndView carregaPessoasPorPaginacao(@PageableDefault(size = 5) Pageable pageable,
-													ModelAndView model) {
-		Page<Pessoa> pagePessoa = pessoaRepository.findAll(pageable);
+													ModelAndView model,
+													@RequestParam("nomepesquisa") String nomepesquisa) {
+		Page<Pessoa> pagePessoa = pessoaService.findPessoaByNamePage(nomepesquisa, pageable);
 		model.addObject("profissoes", profissaoRepository.findAll());
 		model.addObject("pessoas", pagePessoa);
 		model.addObject("pessoaobj", new Pessoa());
