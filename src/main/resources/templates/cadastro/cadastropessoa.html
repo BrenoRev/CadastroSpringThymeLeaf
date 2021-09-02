@@ -295,13 +295,14 @@ overflow: hidden;
 			<span th:if="${pessoas.hasPrevious()}">
 				<a th:href="@{/pessoaspag(page=${pessoas.number-1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">&larr;</a>
 			</span>
-			<span th:if="${pessoas.hasNext()}">
-				<a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">&rarr;</a>
-			</span>
 				
 					<th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages - 1 )}">
 						 <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">[[ ${i} +1 ]]</a>
 					</th:block>
+					
+					<span th:if="${pessoas.hasNext()}">
+				<a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">&rarr;</a>
+			</span>
 			</div>
 		</div>
 	</div>
