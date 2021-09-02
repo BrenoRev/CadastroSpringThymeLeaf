@@ -81,10 +81,17 @@ public class IndexController {
 			model.addObject("profissoes", profissaoRepository.findAll());
 			return model;
 		}
-		// Se existir arquivo para upload
+		// Se existir arquivo para upload * cadastrando uma nova pessoa
 		if(file.getSize() > 0) {
 			pessoa.setCurriculo(file.getBytes());
+			
+			// Editando uma pessoa
+		}else if(pessoa.getId() != null && pessoa.getId() > 0) {
+			// Se essa pessoa já existir no banco de dados vai só editar e mostrar o curriculo
+			byte[] curriculoTemp = pessoaService.buscarPorID(pessoa.getId()).get().getCurriculo();
+			pessoa.setCurriculo(curriculoTemp);
 		}
+		
 		pessoaService.salvarPessoa(pessoa);
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
