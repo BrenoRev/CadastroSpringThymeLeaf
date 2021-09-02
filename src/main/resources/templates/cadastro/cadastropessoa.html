@@ -254,11 +254,10 @@ overflow: hidden;
 			</form>
 		</div>
 		<form action="pesquisarpessoa" id="pesquisarpessoa" method="post">
-			<label>Pesquisa por nome:</label> <input name="nomepesquisa">
-			<button class="btn waves-effect waves-light" type="submit">
-				Buscar</button>
-			<button class="btn waves-effect waves-light" type="submit" onclick="document.getElementById('pesquisarpessoa').method = 'get'">
-			PDF</button>
+			<label>Pesquisa por nome:</label> 
+			<input name="nomepesquisa" id="nomepesquisa" class="validate" th:value="${nomepesquisa}">
+			<button class="btn waves-effect waves-light" type="submit">Buscar</button>
+			<button class="btn waves-effect waves-light" type="submit" onclick="document.getElementById('pesquisarpessoa').method = 'get'">PDF</button>
 		</form>
 
 		<br>
@@ -294,14 +293,14 @@ overflow: hidden;
 			</table>
 			<div class="row" style="margin-top: 30px" id="meio">
 			<span th:if="${pessoas.hasPrevious()}">
-				<a th:href="@{/pessoaspag(page=${pessoas.number-1}, size=${pessoas.size})}">&larr;</a>
+				<a th:href="@{/pessoaspag(page=${pessoas.number-1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">&larr;</a>
 			</span>
 			<span th:if="${pessoas.hasNext()}">
-				<a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size})}">&rarr;</a>
+				<a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">&rarr;</a>
 			</span>
 				
 					<th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages - 1 )}">
-						 <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size})}">[[ ${i} +1 ]]</a>
+						 <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">[[ ${i} +1 ]]</a>
 					</th:block>
 			</div>
 		</div>
