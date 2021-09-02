@@ -64,6 +64,9 @@ public class Pessoa implements Serializable{
 	@Lob
 	private byte[] curriculo;
 			
+	private String nomeFileCurriculo;
+	private String tipoFileCurriculo;
+	
 	@ManyToOne
 	private Profissao profissao;
 	

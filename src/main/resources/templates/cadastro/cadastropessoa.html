@@ -154,7 +154,7 @@ overflow: auto;
 				<div class="row">
 					<div class="input-fiel col s6">
 					<label for="file" class="active">Curriculo</label>
-					<input type="file" id="file" name="file">
+					<input type="file" id="file" name="file" class="file-field input-field">
 					</div>
 					
 					<div class="input-fiel col s6" >
@@ -223,7 +223,7 @@ overflow: auto;
 					<tr>
 						<th>Nome</th>
 						<th>Sobrenome</th>
-						<th>Idade</th>
+						<th>Currículo</th>
 					</tr>
 				</thead>
 				<tbody class ="linha">
@@ -233,7 +233,7 @@ overflow: auto;
 						<td><a th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}">
 						<span th:text="${pessoa.nome}"></span></a></td>
 						<td th:text="${pessoa.sobrenome}"></td>
-						<td th:text="${pessoa.idade}"></td>
+						<td><a th:href="@{/baixarcurriculo/{idpessoa}(idpessoa=${pessoa.id})}">Download</a></td>
 						<td><a 
 							th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"
 							>Editar</a></td>

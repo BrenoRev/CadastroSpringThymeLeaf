@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.brenodev.model.Pessoa;
 import com.brenodev.model.Telefone;
 import com.brenodev.repository.CepRepository;
+import com.brenodev.repository.PessoaRepository;
 import com.brenodev.repository.ProfissaoRepository;
 import com.brenodev.service.PessoaService;
 import com.brenodev.service.TelefoneService;
@@ -84,12 +85,15 @@ public class IndexController {
 		// Se existir arquivo para upload * cadastrando uma nova pessoa
 		if(file.getSize() > 0) {
 			pessoa.setCurriculo(file.getBytes());
-			
+			pessoa.setTipoFileCurriculo(file.getContentType());
+			pessoa.setNomeFileCurriculo(file.getOriginalFilename());
 			// Editando uma pessoa
 		}else if(pessoa.getId() != null && pessoa.getId() > 0) {
 			// Se essa pessoa já existir no banco de dados vai só editar e mostrar o curriculo
-			byte[] curriculoTemp = pessoaService.buscarPorID(pessoa.getId()).get().getCurriculo();
-			pessoa.setCurriculo(curriculoTemp);
+			Pessoa pessoaTemp = pessoaService.buscarPorID(pessoa.getId()).get();
+			pessoa.setCurriculo(pessoaTemp.getCurriculo());
+			pessoa.setTipoFileCurriculo(pessoaTemp.getTipoFileCurriculo());
+			pessoa.setNomeFileCurriculo(pessoaTemp.getNomeFileCurriculo());
 		}
 		
 		pessoaService.salvarPessoa(pessoa);
@@ -202,5 +206,31 @@ public class IndexController {
 		response.getOutputStream().write(pdf);
 		
 	}
+	
+	@GetMapping("**/baixarcurriculo/{idpessoa}")
+	public void baixarCurriculo(@PathVariable("idpessoa") Long idPessoa,
+								HttpServletResponse response) throws IOException {
+		
+		/* Consultar objeto pessoa no banco de dados */
+		Pessoa pessoa = pessoaService.buscarPorID(idPessoa).get();
+		if(pessoa.getCurriculo() != null) {
+			
+			// Setar o tamanho da resposta
+			response.setContentLength(pessoa.getCurriculo().length);
+			
+			// Tipo do arquivo para download [ pode ser generico utilizando o 'application/octet-stream'
+			response.setContentType(pessoa.getTipoFileCurriculo());
+			
+			// Define o cabeçalho da resposta
+			String headerKey = "Content-Disposition";
+			String headerValue = String.format("attachment; filename=\"%s\"", pessoa.getNomeFileCurriculo());
+			response.setHeader(headerKey, headerValue);
+			
+			// Finaliza a resposta passando o arquivo
+			response.getOutputStream().write(pessoa.getCurriculo());
+		}
+		
+	}
 }
+
 
