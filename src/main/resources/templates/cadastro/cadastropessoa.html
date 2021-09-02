@@ -224,10 +224,12 @@ overflow: hidden;
 						<th>ID</th>
 						<th>Nome</th>
 						<th>Currículo</th>
+						<th>Editar</th>
+						<th>Excluir</th>
 					</tr>
 				</thead>
 				<tbody class ="linha">
-					<tr th:each="pessoa : ${pessoas}">
+					<tr th:each="pessoa : ${pessoas.content}">
 
 						
 						<td th:text="${pessoa.id}"></td>
