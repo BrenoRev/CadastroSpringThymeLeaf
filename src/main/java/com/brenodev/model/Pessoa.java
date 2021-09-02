@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -60,6 +61,9 @@ public class Pessoa implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+	@Lob
+	private byte[] curriculo;
+			
 	@ManyToOne
 	private Profissao profissao;
 	

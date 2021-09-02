@@ -89,7 +89,8 @@ overflow: auto;
 		</div>
 		<br>
 			<form id="formpessoa" name="form" action="salvarpessoa" method="post"
-				th:object="${pessoaobj}" class="col s12" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')">
+				th:object="${pessoaobj}" class="col s12" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_GERENTE')"
+				enctype="multipart/form-data">
 
 				<div class="row">
 					<div class="input-fiel col s6">
@@ -150,6 +151,16 @@ overflow: auto;
 					
 				</div>
 				
+				<div class="row">
+					<div class="input-fiel col s6">
+					<p  class="active">Curriculo</p>
+					<input type="file" id="file" name="file">
+					</div>
+					
+					<div class="input-fiel col s6" >
+					</div>
+					
+				</div>
 				
 				<div class="row">
 					<div class="input-fiel col s6">
