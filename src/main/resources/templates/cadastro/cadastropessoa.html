@@ -127,6 +127,7 @@ overflow: hidden;
 	<div id="quadradoprincipal">
 		<h2 sec:authorize="hasRole('ROLE_ADMIN')" style="text-align: center">Cadastro de Funcionário</h2>
 		<h2 sec:authorize="!hasRole('ROLE_ADMIN')" style="text-align: center">Visualização de Funcionários</h2>
+		<a style="margin:30px;" th:href="@{/logout}" class="btn waves-effect waves-light" type="submit">Logout</a>
 		<div class="row">
 		<br>
 		<div th:each="m : ${msg}">

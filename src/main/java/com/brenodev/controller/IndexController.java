@@ -226,6 +226,15 @@ public class IndexController {
 		
 	}
 	
+	@GetMapping("/erro")
+	public ModelAndView falha() {
+		ModelAndView model = new ModelAndView("login");
+		model.setViewName("/login");
+		model.addObject("msg", "Erro no login ou senha");
+		return model;
+	}
+
+	
 	@GetMapping("**/baixarcurriculo/{idpessoa}")
 	public void baixarCurriculo(@PathVariable("idpessoa") Long idPessoa,
 								HttpServletResponse response) throws IOException {
