@@ -1,5 +1,6 @@
 package com.brenodev.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.brenodev.model.Pessoa;
@@ -59,8 +61,8 @@ public class IndexController {
 		return mv;
 	}
 	
-	@PostMapping("**/salvarpessoa")
-	public ModelAndView salvar(@Valid Pessoa pessoa, BindingResult bindingResult) {
+	@RequestMapping(method = RequestMethod.POST, value = "**/salvarpessoa", consumes = {"multipart/form-data"})
+	public ModelAndView salvar(@Valid Pessoa pessoa, BindingResult bindingResult, final MultipartFile file) throws IOException {
 		
 		pessoa.setTelefone(telefoneService.getFones(pessoa.getId()));
 		
@@ -79,6 +81,10 @@ public class IndexController {
 			model.addObject("profissoes", profissaoRepository.findAll());
 			return model;
 		}
+		// Se existir arquivo para upload
+		if(file.getSize() > 0) {
+			pessoa.setCurriculo(file.getBytes());
+		}
 		pessoaService.salvarPessoa(pessoa);
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
@@ -87,6 +93,7 @@ public class IndexController {
 		mv.addObject("pessoaobj", humano.get());
 		mv.addObject("pessoas", lista);
 		return mv;
+		
 	}
 
 	
