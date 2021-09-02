@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -58,7 +58,7 @@ public class IndexController {
 		Optional<Pessoa> pessoa = Optional.of(new Pessoa());
 		mv.addObject("profissoes", profissaoRepository.findAll());
 		mv.addObject("pessoaobj", pessoa.get());
-		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5)));
+		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 		return mv;
 	}
 	
@@ -69,9 +69,8 @@ public class IndexController {
 		
 		if(bindingResult.hasErrors()) {
 			ModelAndView model = new ModelAndView("cadastro/cadastropessoa");
-			List<Pessoa> lista = pessoaService.listarPessoas();
 			model.addObject("pessoaobj", pessoa);
-			model.addObject("pessoas", lista);
+			model.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 			List<String> msg = new ArrayList<String>();
 			
 			// VAI ADICIONAR TODOS OS ERROS NA LISTA
@@ -99,10 +98,9 @@ public class IndexController {
 		pessoaService.salvarPessoa(pessoa);
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
-		List<Pessoa> lista = pessoaService.listarPessoas();
 		Optional<Pessoa> humano = Optional.ofNullable(new Pessoa());
 		mv.addObject("pessoaobj", humano.get());
-		mv.addObject("pessoas", lista);
+		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 		return mv;
 		
 	}
@@ -113,8 +111,7 @@ public class IndexController {
 		Optional<Pessoa> pessoa = pessoaService.buscarPorID(idpessoa);
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		mv.addObject("pessoaobj", pessoa.get());
-		List<Pessoa> lista = pessoaService.listarPessoas();
-		mv.addObject("pessoas", lista);
+		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 		mv.addObject("profissoes", profissaoRepository.findAll());
 		return mv;
 	}
@@ -124,7 +121,7 @@ public class IndexController {
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		pessoaService.removerPorId(idpessoa);
 		mv.addObject("pessoaobj", new Pessoa());
-		mv.addObject("pessoas", pessoaService.buscarTodos());
+		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 		return mv;
 	}
 	
