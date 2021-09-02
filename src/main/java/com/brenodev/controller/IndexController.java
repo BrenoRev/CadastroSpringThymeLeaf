@@ -54,6 +54,17 @@ public class IndexController {
 	@Autowired
 	private ProfissaoRepository profissaoRepository;
 	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
+	
+	@GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+	
 	@RequestMapping(method=RequestMethod.GET , value="**/cadastropessoa")
 	public ModelAndView inicio() {
 		// MOSTRAR A LISTA
