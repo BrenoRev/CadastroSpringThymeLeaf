@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -24,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.brenodev.model.Pessoa;
 import com.brenodev.model.Telefone;
-import com.brenodev.repository.CepRepository;
 import com.brenodev.repository.PessoaRepository;
 import com.brenodev.repository.ProfissaoRepository;
 import com.brenodev.service.PessoaService;
@@ -42,7 +43,7 @@ public class IndexController {
 	private TelefoneService telefoneService;
 	
 	@Autowired
-	private CepRepository cepRepository;
+	private PessoaRepository pessoaRepository;
 	
 	@Autowired
 	private ReportUtil reportUtil;
@@ -54,11 +55,10 @@ public class IndexController {
 	public ModelAndView inicio() {
 		// MOSTRAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
-		List<Pessoa> lista = pessoaService.listarPessoas();
 		Optional<Pessoa> pessoa = Optional.of(new Pessoa());
 		mv.addObject("profissoes", profissaoRepository.findAll());
 		mv.addObject("pessoaobj", pessoa.get());
-		mv.addObject("pessoas", lista);
+		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5)));
 		return mv;
 	}
 	
