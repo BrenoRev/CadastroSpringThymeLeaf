@@ -4,6 +4,26 @@
 
         $(document).ready(function() {
 
+        	// Verifica o navegador
+        	function getBrowserId () {
+
+        	    var
+        	        aKeys = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"],
+        	        sUsrAg = navigator.userAgent, nIdx = aKeys.length - 1;
+
+        	    for (nIdx; nIdx > -1 && sUsrAg.indexOf(aKeys[nIdx]) === -1; nIdx--);
+
+        	    return nIdx
+
+        	}
+	
+	if(getBrowserId() === -1){
+        	$('#dataNascimento').datepicker({
+        		showOthermonths:true,
+        		format: 'yyyy-mm-dd'
+        	});
+	}
+        	
             function limpa_formulario_cep() {
                 // Limpa valores do formulário de cep.
                 $("#rua").val("");

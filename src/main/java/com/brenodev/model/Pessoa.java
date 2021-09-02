@@ -1,6 +1,7 @@
 package com.brenodev.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,12 +13,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.brenodev.enums.Cargo;
 
@@ -51,6 +55,10 @@ public class Pessoa implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
 	private Cargo cargo;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date dataNascimento;
 	
 	@ManyToOne
 	private Profissao profissao;
