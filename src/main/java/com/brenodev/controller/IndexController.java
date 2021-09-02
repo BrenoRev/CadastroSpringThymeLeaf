@@ -69,6 +69,7 @@ public class IndexController {
 	public ModelAndView carregaPessoasPorPaginacao(@PageableDefault(size = 5) Pageable pageable,
 													ModelAndView model) {
 		Page<Pessoa> pagePessoa = pessoaRepository.findAll(pageable);
+		model.addObject("profissoes", profissaoRepository.findAll());
 		model.addObject("pessoas", pagePessoa);
 		model.addObject("pessoaobj", new Pessoa());
 		model.setViewName("cadastro/cadastropessoa");
@@ -93,6 +94,7 @@ public class IndexController {
 			}
 			model.addObject("msg", msg);
 			model.addObject("profissoes", profissaoRepository.findAll());
+			
 			return model;
 		}
 		// Se existir arquivo para upload * cadastrando uma nova pessoa
@@ -113,6 +115,7 @@ public class IndexController {
 		// ATUALIZAR A LISTA
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
 		Optional<Pessoa> humano = Optional.ofNullable(new Pessoa());
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		mv.addObject("pessoaobj", humano.get());
 		mv.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 		return mv;
@@ -140,10 +143,14 @@ public class IndexController {
 	}
 	
 	@PostMapping("**/pesquisarpessoa")
-	public ModelAndView pesquisar(@RequestParam(name = "nomepesquisa") String nomepesquisa) {
+	public ModelAndView pesquisar(@RequestParam(name = "nomepesquisa") String nomepesquisa,
+								  @PageableDefault(size = 5, sort = {"nome"}) Pageable pageable) {
 		ModelAndView mv = new ModelAndView("cadastro/cadastropessoa");
-		mv.addObject("pessoas", pessoaService.findPessoaByName(nomepesquisa));
+		Page<Pessoa> pessoas = pessoaService.findPessoaByNamePage(nomepesquisa, pageable);
+		mv.addObject("pessoas", pessoas);
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		mv.addObject("pessoaobj", new Pessoa());
+		mv.addObject("nomepesquisa", nomepesquisa);
 		return mv;
 	}
 	

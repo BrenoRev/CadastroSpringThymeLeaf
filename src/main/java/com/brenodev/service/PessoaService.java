@@ -6,7 +6,10 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.brenodev.model.Pessoa;
@@ -43,4 +46,18 @@ public class PessoaService{
 		return pessoaRepository.pesquisarNome(nome.toUpperCase());
 	}
 	
+	public Page<Pessoa> findPessoaByNamePage(String nome, Pageable pageable){
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome(nome);
+		// Configurando a pesquisa para consultar por partes do nome no banco de dados, igual ao like do SQL
+		ExampleMatcher exampleMatcher = ExampleMatcher.matchingAny()
+				.withMatcher("nome", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+		
+		// Une o objeto com o valor a configuração para consultar
+		Example<Pessoa> example = Example.of(pessoa, exampleMatcher);
+		
+		Page<Pessoa> pessoas = pessoaRepository.findAll(example, pageable);
+		
+		return pessoas;
+	}
 }
