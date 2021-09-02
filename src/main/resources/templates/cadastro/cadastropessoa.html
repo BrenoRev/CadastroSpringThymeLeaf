@@ -25,6 +25,18 @@
 <title>Cadastro</title>
 
 <style>
+
+	table>tbody>tr:nth-child(odd) {
+	background-color: rgba(158, 154, 154, 0.5);
+}
+	table{
+	width: 100%;
+	margin-bottom: 20px;
+	}
+	
+	table td, table th {
+		border: 1px solid grey;
+	}
 	
 #h2{
 	text-align:center;
@@ -38,7 +50,7 @@ body {
 
 
 #pesquisa{
-height: 300px; 
+height: 100%; 
 overflow: hidden;
 
 }
@@ -59,7 +71,7 @@ overflow: hidden;
 @media screen and (min-width: 1800px) {
 	body{
 	max-width: 70%;
-	height: 100%;
+	height: calc(100% + 100px);
 	}
 }
 
@@ -72,8 +84,6 @@ overflow: hidden;
 	border-radius: 10px;
 }
 
-#linha{
-}
 
 </style>
 </head>
