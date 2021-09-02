@@ -26,16 +26,47 @@
 
 <style>
 
+#meio{
+font-size: 2em;
+	text-align: center;
+	display: inherit;
+}
+#meio > a{
+text-decoration: none;
+border: 1px dashed grey;
+}
+#meio > a:hover{
+border: 1px dashed red;
+}
+
+#formpessoa{
+border: 1px dashed grey;
+}
+
+label{
+color:black;
+font-weight: bold;
+}
+
+
+#pesquisarpessoa{
+padding: 5px;
+border: 1px dashed grey;
+}
+
 	table>tbody>tr:nth-child(odd) {
 	background-color: rgba(158, 154, 154, 0.5);
 }
 	table{
+
 	width: 100%;
 	margin-bottom: 20px;
 	}
 	
 	table td, table th {
-		border: 1px solid grey;
+		text-align: center;
+		margin: 5px;
+		border: 1px dashed grey;
 	}
 	
 #h2{
@@ -50,6 +81,7 @@ body {
 
 
 #pesquisa{
+
 height: 100%; 
 overflow: hidden;
 
@@ -257,6 +289,11 @@ overflow: hidden;
 					<tr>
 				</tbody>
 			</table>
+			<div class="row" style="margin-top: 30px" id="meio">
+					<th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages - 1 )}">
+						 <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size})}">[[ ${i} +1 ]]</a>
+					</th:block>
+			</div>
 		</div>
 	</div>
 	<script th:replace="scriptjs :: script"></script>
