@@ -1,4 +1,4 @@
-# Site de Cadastro de Curriculos de Programadores
+# Sistema de Cadastro de Curriculos de Programadores
 
 <h3> Link do Heroku </h3>
 <h4> https://thyme-programmer.herokuapp.com/ </h4>
